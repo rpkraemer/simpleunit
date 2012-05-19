@@ -1,0 +1,13 @@
+Adequar o relatório de Console aos novos dados de UnitResult - OK
+
+Implementar o relatório HTML - OK
+
+Implementar funcionalidade de FIXTURE (@BeforeUnit) nos Tests - OK
+
+Implementar funcionalidade de gravação de resultados em banco de dados relacional - OK
+
+Colocar mais tipos de asserções - OK
+
+Cobrir melhor de testes o framework
+
+Melhorar documentação Javadoc

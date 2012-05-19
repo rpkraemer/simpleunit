@@ -1,0 +1,98 @@
+body {
+	font-family: Verdana;
+	margin: auto;
+	width: 920px;
+	height: auto;
+}
+
+table {
+	float: left;
+	border: 1px solid #CCCCCC;
+	text-align: left;
+	width: 100%;
+	border: 2px solid #CCCCCC;
+	background-color: #ECEBE7;
+	font-size: 12px;
+}
+
+table thead {
+	background-color: gray;
+	color: white;
+}
+
+table tbody tr td.FAILED {
+	background-color: red;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+}
+
+table tbody tr td.PASSED {
+	background-color: green;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+}
+
+h3 {
+	text-align: center;
+	width: 100%;
+	margin-top: 20px
+}
+
+h2 {
+	float: left;
+	text-align: left;
+	width: 100%;
+	margin-top: 20px;
+	text-align: left;
+}
+
+hr {
+	float: left;
+	width: 100%;
+	color: navy;
+}
+
+.final_results {
+	float: left;
+	border: 2px solid #CCCCCC;
+	height: 100px;
+	width: 500px;
+	padding: 8px;
+	background-color: #EAE2F6;
+	font-size: 12px;
+	border: 2px solid #CCCCCC;
+	margin-bottom: 15px
+}
+
+#time_used {
+	font-size: 12px;
+	font-weight: bold;
+	float: left;
+	width: 100%;
+	margin-bottom: 25px;
+}
+
+.assertions {
+	width: 50%;
+	margin-bottom: 30px;
+	font-size: 12px;
+	background-color: #FEFEFA;
+	width: 50%;
+}
+
+.exception {
+	background-color: #FEFEFA;
+	clear: both;
+	float: left;
+	font-size: 12px;
+	margin-right: 10px;
+	width: 50%;
+}
+
+.chart {
+	float: right;
+	width: auto;
+	height: 100px;
+}
