@@ -44,11 +44,15 @@ public class CurrentUnitMethodExecution {
 	public boolean isPassed() {
 		//Se há uma exceção esperada para o Unit o teste só irá passar se esta mesma exceção ocorreu
 		//e as asserções passarem
-		//Caso contrário basta apenas o número de asserções OK ser igual ao total (todas)
+		//Caso contrário basta apenas o número de asserções OK ser igual ao total,
+		//porém, se ocorrer uma exceção não esperada, o teste falha reportando ao desenvovedor
 		if (expectedException != null) {
 			return (expectedException == exceptionOccurred) && 
 				   (numberOfPassedAssertions == totalNumberOfAssertions());
 		} else {
+			if (exceptionOccurred != null) {
+				return false;
+			}
 			return numberOfPassedAssertions == totalNumberOfAssertions();
 		}
 	}

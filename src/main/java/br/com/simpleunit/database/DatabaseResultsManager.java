@@ -57,6 +57,6 @@ public class DatabaseResultsManager {
 			}
 		}
 		throw new InvalidPropertiesFile("Could not load the properties file of the framework.\n" +
-				"Check if it is created in the project classpath");
+				"Check if it is created in the project classpath: simpleunit.properties");
 	}
 }

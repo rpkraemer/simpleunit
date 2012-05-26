@@ -29,14 +29,16 @@ class DatabaseResultsRecorder {
 	 */
 	private int currentUnitFinalResultsCode; //Armazena o código recém inserido na tabela finalResultsTablename
 	private int currentUnitResultsCode; //Armazena o código recém inserido na tabela unitResultsTablename
+	private String projectName;
 	
 	private Connection connection;
 	private CoreWrapper core;
 	
 	public DatabaseResultsRecorder(ConnectionProvider connectionProvider, CoreWrapper core) {
 		
-		//Recebe informações da conexão setada pelo usuário
+		//Recebe informações da conexão e projeto setado pelo usuário na implementação da interface
 		connection = connectionProvider.getConnection();
+		projectName = connectionProvider.yourProjectName();
 		
 		//Recebe informações da execução na variável core
 		this.core = core;
@@ -147,7 +149,7 @@ class DatabaseResultsRecorder {
 	}
 
 	private void insertFinalResult() throws SQLException {
-		String sql = String.format("INSERT INTO %1$s VALUES (?,?,?,?,?,?,?,?)", finalResultsTablename);
+		String sql = String.format("INSERT INTO %1$s VALUES (?,?,?,?,?,?,?,?,?)", finalResultsTablename);
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
 		currentUnitFinalResultsCode = getNextFinalResultsCode(); 
@@ -160,6 +162,7 @@ class DatabaseResultsRecorder {
 		statement.setShort(6, (short) core.getFinalResults().getTotalNumberOfUnits());
 		statement.setShort(7, (short) core.getFinalResults().getTotalNumberOfPassedUnits());
 		statement.setShort(8, (short) core.getFinalResults().getTotalNumberOfFailedUnits());
+		statement.setString(9, projectName);
 		
 		statement.execute();
 		statement.close();
@@ -202,7 +205,7 @@ class DatabaseResultsRecorder {
 				//Recupera cada DDL do arquivo em databaseCommands
 				String[] databaseCommands = getSimpleUnitTablesDDLCommands();
 				
-				//Adiciona cada um a uma execução em lote
+				//Executa cada DDL no banco de dados
 				for (int command = 0; command < databaseCommands.length; command++) {
 					statement = connection.prepareStatement(databaseCommands[command]);
 					statement.execute();
@@ -214,7 +217,7 @@ class DatabaseResultsRecorder {
 			throw new DatabaseInteractionException("SimpleUnit could not retrieve the database metadata: " + 
 												   e.getMessage());
 		} catch (IOException e) {
-			throw new ExecutionException("SimpleUnit could not read the script file with the definition of your " +
+			throw new ExecutionException("SimpleUnit could not read the script file with the definition of its " +
 										 "database: " + e.getMessage());
 		}
 	}
