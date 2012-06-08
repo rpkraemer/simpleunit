@@ -102,6 +102,7 @@ class DatabaseResultsRecorder {
 		resultSet.next();
 		int nextCode = resultSet.getInt("NEXT_CODE");
 		resultSet.close();
+		statement.close();
 		return nextCode;
 	}
 
@@ -177,6 +178,7 @@ class DatabaseResultsRecorder {
 		resultSet.next();
 		int nextCode = resultSet.getInt("NEXT_CODE");
 		resultSet.close();
+		statement.close();
 		return nextCode;
 	}
 
